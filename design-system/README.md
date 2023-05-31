@@ -22,47 +22,22 @@ The color primitives are defined in the `colors.ts` file and included in the Cha
 For example, the base color is defined as follows:
 
 ```tsx
-const yellow = {
-  0: "#000000",
-  10: "#332500",
-  20: "#664B00",
-  30: "#996E00",
-  40: "#CC9200",
-  50: "#D69E2E",
-  60: "#E6CA8D",
-  70: "#F2E4BB",
-  80: "#F9F2E0",
-  90: "#FCF8ED",
-  95: "#FEFCF7",
-  99: "#FEFEFD",
-  100: "#FFFFFF",
-};
-
-const whiteAlpha = {
-  0: "#FFFFFF",
-  1: "rgba(255, 255, 255, 0.01)",
-  5: "rgba(255, 255, 255, 0.05)",
-  10: "rgba(255, 255, 255, 0.1)",
-  20: "rgba(255, 255, 255, 0.2)",
-  30: "rgba(255, 255, 255, 0.3)",
-  40: "rgba(255, 255, 255, 0.4)",
-  50: "rgba(255, 255, 255, 0.5)",
-  60: "rgba(255, 255, 255, 0.6)",
-  70: "rgba(255, 255, 255, 0.7)",
-  80: "rgba(255, 255, 255, 0.8)",
-  90: "rgba(255, 255, 255, 0.9)",
-  100: "transparent",
-};
-
+const blue = createHslBaseColor(215, 99); // 215 is the hue and 99 is the saturation
 // ...
 
 const primitives = {
-  yellow,
-  whiteAlpha,
+  blue,
   // ...
 };
 
 export default primitives;
+```
+
+Then, we can use the color with the function `getColor` as follows:
+
+```tsx
+const linkColor = getColor("blue", 50); // 50 is the lightness
+const linkColorHover = getColor("blue", 50, 0.5); // 50 is the lightness and .5 is the alpha
 ```
 
 ### Color Roles
@@ -99,13 +74,13 @@ This is an example of how the primary color is defined in the `colors.ts` file:
 ```tsx
 const roles = {
   primary: {
-    default: "blue.50",
-    _dark: "blue.80",
+    default: getColor("blue", 50),
+    _dark: getColor("blue", 80),
   },
   // This color is defined for the content that could be seen on top of the primary color.
   onPrimary: {
-    default: "white",
-    _dark: "darkBlue.10",
+    default: getColor("gray", 10)
+    _dark: getColor("gray", 80)
   },
   // ...
 };
@@ -136,7 +111,7 @@ The design system provides a set of pre-built components that are styled accordi
 
 For example, a Card component can be created as follows:
 
-1. Create a new file in the `design-system/components/Card` directory called `theme.ts`.
+1. Create a new file in the `design-system/components` directory called `card.ts`.
 
 ```tsx
 import { ComponentStyleConfig } from "@chakra-ui/react";
@@ -170,7 +145,18 @@ const Card = defineStyleConfig({
 });
 ```
 
-2. Create a new file in the `design-system/components/Card` directory called `index.tsx`.
+2. Add the component to the `index.ts` file in the `design-system/components` directory.
+
+```tsx
+import { ComponentStyleConfig } from "@chakra-ui/react";
+
+export const components: Record<string, ComponentStyleConfig> = {
+  // ...
+  Card,
+};
+```
+
+3. Create a new file in the `features/shared/components` directory called `Card.tsx`.
 
 ```tsx
 import { Box, useStyleConfig } from "@chakra-ui/react";
@@ -187,39 +173,11 @@ function Card(props) {
 export default Card;
 ```
 
-3. Add the component to the `components.ts` file in the `design-system` directory.
+4. Then, we can use a component and include it in your JSX:
 
 ```tsx
-import { ComponentStyleConfig } from "@chakra-ui/react";
-
-export const components: Record<string, ComponentStyleConfig> = {
-  // ...
-  Card,
-};
-```
-
-4. Add the component to the `index.ts` file in the `design-system` directory.
-
-```tsx
-import { extendTheme } from "@chakra-ui/react";
-import colors from "./colors";
-import components from "./components";
-import textStyles from "./textStyles";
-import boxStyles from "./boxStyles";
-import globalStyles from "./globalStyles";
-
-export const theme = extendTheme({
-  colors,
-  components,
-  textStyles,
-  boxStyles,
-});
-```
-
-5. Then, we can use a component, import it from the design system, and include it in your JSX:
-
-```tsx
-import { Card, Text } from "@design-system/components";
+import { Text } from "@chakra-ui/react";
+import { Card } from "@/features/shared/components";
 
 function App() {
   return (

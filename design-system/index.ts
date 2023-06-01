@@ -1,4 +1,4 @@
-import { ChakraTheme, extendTheme } from "@chakra-ui/react";
+import { ChakraTheme, ThemeConfig, extendTheme } from "@chakra-ui/react";
 import colors from "./colors";
 import components from "./components";
 import layerStyles from "./layerStyles";
@@ -10,9 +10,13 @@ const fonts: ChakraTheme["fonts"] = {
   heading: '"Poppins", sans-serif',
 };
 
-console.log(colors);
+const config: ThemeConfig = {
+  initialColorMode: "dark",
+  useSystemColorMode: false,
+};
 
 export const theme = extendTheme({
+  config,
   styles: {
     global: globalStyles,
   },

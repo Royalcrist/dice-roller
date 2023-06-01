@@ -64,10 +64,10 @@ Color roles are derived from color primitives and used for various UI components
 | DiscoveryHover | onDiscoveryHover | Hover state for discovery color components.                                                                                                  |
 | Background     | onBackground     | Used for the app's background.                                                                                                               |
 | Surface        | onSurface        | Used for the background of elevated surfaces, such as cards, sheets, and dialogs.                                                            |
-| Outline        | onOutline        | Outlines components like buttons and text fields.                                                                                            |
+| Outline        | onOutline        | Outlines components like buttons and text field.                                                                                             |
 | Overlay        | onOverlay        | Overlays components, such as modals and menus.                                                                                               |
 | Shadow         | onShadow         | Used to shadow components like cards and sheets.                                                                                             |
-| Fields         | onFields         | Background color for form fields, such as inputs and text areas.                                                                             |
+| field          | onfield          | Background color for form field, such as inputs and text areas.                                                                              |
 
 This is an example of how the primary color is defined in the `colors.ts` file:
 
@@ -95,7 +95,7 @@ Text styles are predefined sets of ChakraUI properties that can be applied to va
 - Display: This token is used for large display text, often seen in banners or introductory sections, and is designed to be visually striking and attention-grabbing.
 - Headline: This token is used for large headings, such as section titles, and is designed to be visually prominent and easy to read.
 - Title: This token is used for medium-sized titles, often seen in cards or subsections, and is designed to be easily scannable and stand out among body text.
-- Label: This token is used for labeling form fields, buttons, or other interactive elements, and is designed to be clear and concise.
+- Label: This token is used for labeling form field, buttons, or other interactive elements, and is designed to be clear and concise.
 - Body: This token is used for general body text, providing a comfortable reading experience for long-form content.
   To use a text style, apply the Chakra UI properties to your components:
 

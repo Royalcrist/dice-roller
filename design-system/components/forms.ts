@@ -15,7 +15,7 @@ const buttonSizes = ["sm", "md", "lg"].reduce(
 // TODO: Modify readme the color roles
 const Button: ComponentStyleConfig = {
   baseStyle: {
-    borderRadius: "2xl",
+    borderRadius: "lg",
   },
   sizes: {
     ...buttonSizes,
@@ -69,10 +69,11 @@ const Input: ComponentStyleConfig = {
   variants: {
     default: {
       field: {
-        backgroundColor: "fields",
-        color: "onFields",
+        backgroundColor: "field",
+        color: "onfield",
         border: "none",
         padding: "2em",
+        borderRadius: "lg",
       },
     },
   },
@@ -81,8 +82,20 @@ const Input: ComponentStyleConfig = {
   },
 };
 
+export const Form: ComponentStyleConfig = {
+  parts: ["container", "requiredIndicator", "helperText"],
+  baseStyle: {
+    container: {
+      label: {
+        textStyle: "label",
+      },
+    },
+  },
+};
+
 const forms = {
   Button,
+  Form,
   Input,
 };
 

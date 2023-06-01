@@ -1,101 +1,102 @@
-import { getColor } from "./primitives";
+import { ColorPrimitives, getColor } from "@/design-system/colors/primitives";
 
 const onBackground = {
-  _dark: getColor("gray", 80, 0.8),
-  default: getColor("obsidian", 10),
+  _dark: getColor("gray", 100, 0.85),
+  default: getColor("gray", 10),
 };
 
 const secondaryHover = {
-  _dark: getColor("obsidian", 20),
-  default: getColor("obsidian", 95),
+  _dark: getColor("blue", 20),
+  default: getColor("blue", 95),
 };
 
 const onLight = getColor("gray", 100);
 
+const createColorAccentStates = (
+  name: string,
+  color: keyof ColorPrimitives
+) => ({
+  [name]: {
+    _dark: getColor(color, 55),
+    default: getColor(color, 50),
+  },
+  [`${name}Hover`]: {
+    _dark: getColor(color, 65),
+    default: getColor(color, 60),
+  },
+});
+
+const primary = createColorAccentStates("primary", "blue");
+const success = createColorAccentStates("success", "green");
+const warning = createColorAccentStates("warning", "yellow");
+const error = createColorAccentStates("error", "red");
+const info = createColorAccentStates("info", "purple");
+const discovery = createColorAccentStates("discovery", "orange");
+
 const roles = {
+  // Background
   background: {
-    _dark: getColor("obsidian", 10),
-    default: onLight,
+    _dark: getColor("blue", 7),
+    default: getColor("gray", 100),
   },
   onBackground,
-  surface: {
-    _dark: getColor("obsidian", 20),
-    default: getColor("obsidian", 95),
-  },
-  onSurface: onBackground,
-  primary: {
-    _dark: getColor("purple", 40),
-    default: getColor("purple", 50),
-  },
+
+  // Primary
+  ...primary,
   onPrimary: onLight,
-  primaryHover: {
-    _dark: getColor("purple", 50),
-    default: getColor("purple", 60),
-  },
   onPrimaryHover: {
     _dark: onLight,
     default: onLight,
   },
+
+  // Secondary
   secondary: "transparent",
-  onSecondary: onBackground,
   secondaryHover,
+  onSecondary: onBackground,
   onSecondaryHover: onBackground,
+
+  // Tertiary
   tertiary: "transparent",
-  onTertiary: onBackground,
   tertiaryHover: secondaryHover,
+  onTertiary: onBackground,
   onTertiaryHover: onBackground,
-  success: {
-    _dark: getColor("green", 40),
-    default: getColor("green", 50),
-  },
+
+  // Success
+  ...success,
   onSuccess: onLight,
-  successHover: {
-    _dark: getColor("green", 50),
-    default: getColor("green", 60),
-  },
   onSuccessHover: onLight,
-  warning: {
-    _dark: getColor("yellow", 40),
-    default: getColor("yellow", 50),
-  },
+
+  // Warning
+  ...warning,
   onWarning: onLight,
-  error: {
-    _dark: getColor("red", 40),
-    default: getColor("red", 50),
-  },
+  onWarningHover: onLight,
+
+  // Error
+  ...error,
   onError: onLight,
-  errorHover: {
-    _dark: getColor("red", 50),
-    default: getColor("red", 60),
-  },
   onErrorHover: onLight,
-  info: {
-    _dark: getColor("blue", 40),
-    default: getColor("blue", 50),
-  },
+
+  // Info
+  ...info,
   onInfo: onLight,
-  infoHover: {
-    _dark: getColor("blue", 50),
-    default: getColor("blue", 60),
-  },
   onInfoHover: onLight,
-  discovery: {
-    _dark: getColor("purple", 40),
-    default: getColor("purple", 50),
-  },
+
+  // Discovery
+  ...discovery,
   onDiscovery: onLight,
-  discoveryHover: {
-    _dark: getColor("purple", 50),
-    default: getColor("purple", 60),
-  },
   onDiscoveryHover: onLight,
-  fields: {
-    _dark: getColor("obsidian", 20),
+
+  // Rest of the roles
+  field: {
+    _dark: getColor("blue", 20),
     default: getColor("gray", 5),
   },
-  onFields: onBackground,
+  onfield: onBackground,
   overlay: getColor("gray", 20),
-  outline: onBackground,
+  outline: {
+    _dark: getColor("gray", 100, 0.1),
+    default: getColor("gray", 5),
+  },
   shadow: {
     _dark: getColor("gray", 100, 0.05),
     default: getColor("gray", 0, 0.05),

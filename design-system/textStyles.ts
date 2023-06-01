@@ -7,29 +7,17 @@ const textStylesGeneral = {
 };
 
 const textStyles: ChakraTheme["textStyles"] = {
-  h1: {
-    fontSize: ["2xl", "3xl", "4xl"],
+  display: {
     ...textStylesGeneral,
+    fontSize: ["4xl", "5xl", "6xl"],
   },
-  h2: {
+  title: {
+    ...textStylesGeneral,
     fontSize: ["xl", "2xl", "3xl"],
-    ...textStylesGeneral,
   },
-  h3: {
-    fontSize: ["lg", "xl", "2xl"],
+  label: {
     ...textStylesGeneral,
-  },
-  h4: {
-    fontSize: ["md", "lg", "xl"],
-    ...textStylesGeneral,
-  },
-  h5: {
-    fontSize: ["sm", "md", "lg"],
-    ...textStylesGeneral,
-  },
-  h6: {
-    fontSize: ["xs", "sm", "md"],
-    ...textStylesGeneral,
+    lineHeight: "base",
   },
 };
 

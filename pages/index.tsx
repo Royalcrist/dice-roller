@@ -1,16 +1,15 @@
 // App.tsx
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
-  Box,
   Input,
   Button,
-  Stack,
   Text,
   Grid,
   GridItem,
   FormControl,
   FormLabel,
   VStack,
+  useToast,
 } from "@chakra-ui/react";
 import Dice from "@/components/Dice";
 import useDiceRoll from "@/hooks/useDiceRoll";
@@ -19,6 +18,23 @@ import { AnimatePresence } from "framer-motion";
 const App: React.FC = () => {
   const [diceCount, setDiceCount] = useState<number>(1);
   const { rolls, rollDice } = useDiceRoll(diceCount);
+  const toast = useToast();
+
+  const handleDiceCountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const count = parseInt(e.target.value);
+
+    if (count > 99) {
+      return toast({
+        title: "Too many dice",
+        description: "Please enter a number between 1 and 99",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+
+    setDiceCount(count);
+  };
 
   return (
     <Grid
@@ -39,7 +55,9 @@ const App: React.FC = () => {
                 placeholder="Number of dice"
                 type="number"
                 value={diceCount}
-                onChange={(e) => setDiceCount(parseInt(e.target.value))}
+                min={1}
+                max={99}
+                onChange={handleDiceCountChange}
                 width="100%"
               />
             </FormControl>

@@ -63,7 +63,7 @@ const App: React.FC = () => {
             </FormControl>
           </VStack>
           <Button onClick={() => rollDice(diceCount)} width="100%">
-            Roll
+            Roll and rock!
           </Button>
         </VStack>
         <VStack spacing={4}>

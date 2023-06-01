@@ -1,5 +1,9 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Figma prototype
+
+You can find the prototype [here](https://www.figma.com/file/FRSXpGwMYtyln6P84QXj0X/Dice-Roller?type=design&node-id=5%3A1250&t=4oVVakP7SA8xq18m-1)
+
 ## Getting Started
 
 First, run the development server:
